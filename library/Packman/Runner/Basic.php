@@ -17,14 +17,23 @@
  * @copyright  Copyright (c) 2011 Pádraic Brady (http://blog.astrumfutura.com)
  * @license    http://github.com/padraic/packman/blob/master/LICENSE New BSD License
  */
- 
-namespace Packman\Parser;
 
-interface Parsable
+namespace Packman\Runner;
+use Packman;
+
+class Basic implements Runnable
 {
-    
-    public function __construct($filename);
 
-    public function parse();
+    public function execute(array $options)
+    {
+        $parser = new Parser\Closure($options['spec']);
+        $container = $parser->parse();
+        $data = $container->process();
+        if (!$container->validate()) {
+            throw new Packman\Exception('You were bad!');
+        }
 
+        $packager = new Packman\Packager\Tgz($data);
+    }
+ 
 }

@@ -17,14 +17,12 @@
  * @copyright  Copyright (c) 2011 Pádraic Brady (http://blog.astrumfutura.com)
  * @license    http://github.com/padraic/packman/blob/master/LICENSE New BSD License
  */
- 
-namespace Packman\Parser;
 
-interface Parsable
+namespace Packman\Runner;
+
+interface Runnable
 {
-    
-    public function __construct($filename);
 
-    public function parse();
-
+    public function execute(array $options);
+ 
 }

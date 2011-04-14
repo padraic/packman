@@ -18,13 +18,15 @@
  * @license    http://github.com/padraic/packman/blob/master/LICENSE New BSD License
  */
  
-namespace Packman\Parser;
+namespace Packman\Container;
 
-interface Parsable
+interface Processable
 {
-    
-    public function __construct($filename);
 
-    public function parse();
+    public function process();
+
+    public function validate();
+
+    public function getDataMap()
 
 }

@@ -40,4 +40,15 @@ class Closure implements Parsable
         $this->parsableContent = file_get_contents($filename);
     }
 
+    public function parse(Packman\Container\DataContainer $data = null)
+    {
+        if (is_null($data)) {
+            $data = new Packman\Container\PackageData;
+        }
+        include $filename;
+        $package($data);
+        $data->process();
+        return $data;
+    }
+
 }
