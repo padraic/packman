@@ -21,3 +21,32 @@ In recent weeks PHP programmers have been wondering about how to improve PEAR pa
 This README will expand shortly as implementation makes headway.
 
 If you have suggestions for what sort of package format/style/features you'd like to see, pop open a git issue, find me on IRC, or message me on Twitter. I'm more to happy to discuss the ideas I show off here.
+
+Example
+-------
+
+Like any idea, the format is subject to change. I've attempted to be as minimal as possible, even to the point of reducing array usage.
+
+    <?php
+
+    $package = function ($s) {
+        $s->name = 'Overlord';
+        $s->authors = 'Padraic Brady, Sauron[sauron@mordor.me]';
+        $s->version = '0.0.1-dev';
+        $s->api_version = '0.0.1-dev';
+        $s->summary = 'Monitoring library for Hobbit Detector 1.0';
+        $s->description = file_get_contents(__DIR__ . '/description.txt');
+        $s->homepage = 'http://en.wikipedia.org/wiki/Sauron';
+        $s->changelog = file_get_contents(__DIR__ . '/changelog.txt');
+        $s->files['php'][] = 'library/**/*.php';
+        $s->files['tests'][] = 'tests/**/*.*';
+        $s->files['ignore'][] = '*.project';
+        $s->files['bin'][] = 'scripts/overlord.bat';
+        $s->include_path = 'MutateMe/Mutations/';
+        $s->dependencies[] = 'PHP[>=5.3.1]';
+        $s->dependencies[] = 'Pear[>=1.6.5]';
+        $s->dependencies[] = 'MutateMe[0.5.0]';
+        $s->dependencies[] = 'ext/runkit';
+        $s->optional_dependencies[] = 'ext/eyeofsauron';
+        $s->license = 'New BSD';
+    };
